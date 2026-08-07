@@ -1,6 +1,6 @@
 {
   "name": "@norarcasey/arkanora",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "An embeddable React breakout game — bounce the ball with your paddle and smash every brick.",
   "license": "MIT",

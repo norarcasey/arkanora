@@ -11,6 +11,13 @@
   width: 100%;
   max-width: 560px;
   margin: 0 auto;
+  /* The component carries its own surface rather than reading legibly only on
+     a dark host. The header sits outside the board, so without this its text
+     lands on whatever the embedding page uses and the contrast is the host's
+     problem to get right. */
+  padding: 0.75rem;
+  background: var(--arkanora-bg);
+  border-radius: 12px;
   font-family:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
     'Helvetica Neue', sans-serif;

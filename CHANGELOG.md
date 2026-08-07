@@ -4,6 +4,16 @@ All notable changes to this project are documented here. The format is based
 on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2026-08-07
+
+### Fixed
+
+- The component now carries its own dark surface instead of relying on the
+  embedding page to provide one. The score and lives readouts sit in a header
+  above the board, so on a light host they were accent cyan on white at 1.56:1,
+  well under the 4.5:1 WCAG AA minimum. They now sit on the game's own
+  background at roughly 12:1, and the component looks the same on any host.
+
 ## [0.1.0] - 2026-06-04
 
 ### Added
@@ -26,4 +36,5 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   provenance), idempotent so a release for an already-published version is a
   no-op instead of a failure.
 
+[0.1.1]: https://www.npmjs.com/package/@norarcasey/arkanora/v/0.1.1
 [0.1.0]: https://www.npmjs.com/package/@norarcasey/arkanora/v/0.1.0
