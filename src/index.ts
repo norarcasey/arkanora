@@ -5,4 +5,4 @@ export type { ArkanoraProps } from './components/Arkanora'
 export { useArkanora } from './game/useArkanora'
 export type { ArkanoraApi, UseArkanoraOptions } from './game/useArkanora'
 
-export type { Ball, Brick, GameStatus } from './game/types'
+export type { Ball, Brick, GameStatus, PowerUp, PowerUpKind } from './game/types'

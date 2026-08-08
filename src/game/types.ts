@@ -12,6 +12,21 @@ export interface Ball {
   vy: number
 }
 
+/**
+ * What a caught capsule does. Only one kind so far; the field exists so the
+ * renderer and the reducer can branch on it as more are added.
+ */
+export type PowerUpKind = 'multiball'
+
+/** A capsule falling from a broken brick. Centered on `x`, top-left `y`. */
+export interface PowerUp {
+  /** Center x, in units. */
+  x: number
+  /** Top edge, in units. */
+  y: number
+  kind: PowerUpKind
+}
+
 /** A single brick. Axis-aligned, top-left origin. */
 export interface Brick {
   x: number

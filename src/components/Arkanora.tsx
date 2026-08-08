@@ -12,6 +12,10 @@ export interface ArkanoraProps {
   lives?: number
   /** Milliseconds between physics ticks; lower is smoother/faster. Default `16`. */
   speed?: number
+  /** Drop multiball capsules from broken bricks. Default `true`. */
+  powerUps?: boolean
+  /** Bricks to break per capsule dropped. Default `4`. */
+  powerUpEvery?: number
   /** Steer the paddle with the arrow keys / A,D. Default `true`. */
   enableKeyboard?: boolean
   /** Heading shown above the board. Pass `null` to hide it. */
@@ -25,11 +29,13 @@ export function Arkanora({
   cols,
   lives,
   speed,
+  powerUps,
+  powerUpEvery,
   enableKeyboard = true,
   title = 'Arkanora',
   className,
 }: ArkanoraProps) {
-  const game = useArkanora({ rows, cols, lives, speed })
+  const game = useArkanora({ rows, cols, lives, speed, powerUps, powerUpEvery })
   const { status, start, nudgePaddle } = game
 
   useEffect(() => {
@@ -76,13 +82,16 @@ export function Arkanora({
         <Board
           width={game.width}
           height={game.height}
-          ball={game.ball}
+          balls={game.balls}
           ballRadius={game.ballRadius}
           paddleX={game.paddleX}
           paddleWidth={game.paddleWidth}
           paddleHeight={game.paddleHeight}
           paddleY={game.paddleY}
           bricks={game.bricks}
+          powerUps={game.powerUps}
+          powerUpWidth={game.powerUpWidth}
+          powerUpHeight={game.powerUpHeight}
         />
 
         {status !== 'running' && (
@@ -95,7 +104,10 @@ export function Arkanora({
             <button type="button" className="arkanora__button" onClick={start}>
               {isOver ? 'Play again' : 'Start'}
             </button>
-            <p className="arkanora__hint">Move with the mouse, or arrow keys / A,D</p>
+            <p className="arkanora__hint">
+              Move with the mouse, or arrow keys / A,D
+              {powerUps !== false && ' — catch a gold capsule to split the ball'}
+            </p>
           </div>
         )}
       </div>

@@ -4,6 +4,7 @@
   --arkanora-wall: #1b2550;
   --arkanora-ball: #ffffff;
   --arkanora-paddle: #38e1ff;
+  --arkanora-powerup: #ffd166;
   --arkanora-accent: #38e1ff;
   --arkanora-text: #e7ecff;
 
@@ -84,6 +85,31 @@
   background: var(--arkanora-ball);
   border-radius: 50%;
   box-shadow: 0 0 10px var(--arkanora-ball);
+}
+
+/* A falling capsule. Amber and pulsing so it reads as a thing to chase rather
+   than a stray brick — it's the one object on the board you want to touch. */
+.arkanora__powerup {
+  position: absolute;
+  background: var(--arkanora-powerup);
+  border-radius: 999px;
+  box-shadow: 0 0 12px var(--arkanora-powerup);
+  animation: arkanora-pulse 0.7s ease-in-out infinite alternate;
+}
+
+@keyframes arkanora-pulse {
+  from {
+    filter: brightness(0.8);
+  }
+  to {
+    filter: brightness(1.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arkanora__powerup {
+    animation: none;
+  }
 }
 
 /* ---- Overlay ---- */

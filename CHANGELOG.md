@@ -4,6 +4,26 @@ All notable changes to this project are documented here. The format is based
 on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- **Multiball power-up.** Every fourth brick broken drops a gold capsule; catch
+  it with the paddle and every ball on the board splits into three (capped at
+  eight). The first level was a slow single-ball grind — this gives the player
+  something to chase and a way to clear a wall fast, at the risk of abandoning
+  the ball to go get it.
+- `powerUps` and `powerUpEvery` props / hook options to tune or disable drops.
+  Capsules drop on a fixed cadence rather than at random, so the engine stays a
+  pure, replayable reducer.
+
+### Changed
+
+- The engine now tracks `balls: Ball[]` instead of a single ball, and a life is
+  only lost when the _last_ ball leaves the board. `ArkanoraApi.ball` still
+  returns the first ball and is deprecated; custom renderers should map over
+  `balls` and `powerUps`.
+
 ## [0.1.1] - 2026-08-07
 
 ### Fixed
