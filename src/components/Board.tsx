@@ -1,16 +1,19 @@
 import type { CSSProperties } from 'react'
-import type { Ball, Brick } from '../game/types'
+import type { Ball, Brick, PowerUp } from '../game/types'
 
 interface BoardProps {
   width: number
   height: number
-  ball: Ball
+  balls: Ball[]
   ballRadius: number
   paddleX: number
   paddleWidth: number
   paddleHeight: number
   paddleY: number
   bricks: Brick[]
+  powerUps: PowerUp[]
+  powerUpWidth: number
+  powerUpHeight: number
 }
 
 /**
@@ -20,24 +23,20 @@ interface BoardProps {
 export function Board({
   width,
   height,
-  ball,
+  balls,
   ballRadius,
   paddleX,
   paddleWidth,
   paddleHeight,
   paddleY,
   bricks,
+  powerUps,
+  powerUpWidth,
+  powerUpHeight,
 }: BoardProps) {
   const pct = (value: number, span: number) => `${(value / span) * 100}%`
 
   const boardStyle: CSSProperties = { aspectRatio: `${width} / ${height}` }
-
-  const ballStyle: CSSProperties = {
-    left: pct(ball.x - ballRadius, width),
-    top: pct(ball.y - ballRadius, height),
-    width: pct(ballRadius * 2, width),
-    height: pct(ballRadius * 2, height),
-  }
 
   const paddleStyle: CSSProperties = {
     left: pct(paddleX - paddleWidth / 2, width),
@@ -65,8 +64,34 @@ export function Board({
           />
         ) : null,
       )}
+      {powerUps.map((p, i) => (
+        <div
+          key={i}
+          className="arkanora__powerup"
+          style={{
+            left: pct(p.x - powerUpWidth / 2, width),
+            top: pct(p.y, height),
+            width: pct(powerUpWidth, width),
+            height: pct(powerUpHeight, height),
+          }}
+          aria-hidden
+          data-testid="powerup"
+        />
+      ))}
       <div className="arkanora__paddle" style={paddleStyle} aria-hidden />
-      <div className="arkanora__ball" style={ballStyle} aria-hidden />
+      {balls.map((ball, i) => (
+        <div
+          key={i}
+          className="arkanora__ball"
+          style={{
+            left: pct(ball.x - ballRadius, width),
+            top: pct(ball.y - ballRadius, height),
+            width: pct(ballRadius * 2, width),
+            height: pct(ballRadius * 2, height),
+          }}
+          aria-hidden
+        />
+      ))}
     </div>
   )
 }
